@@ -1,0 +1,34 @@
+Create DataBase Vet;
+use Vet;
+create table Mascota(id int not null, Nombre varchar(100), ID_dueno integer, Servicio varchar(100));
+insert into Mascota(id, Nombre, ID_dueno, Servicio) values(1, "Lola", "1", "perro");
+select * from Mascota;
+
+
+create table Persona(id int not null, Nombre varchar(100), Apellido varchar(100), CodZip integer, Primary Key (id));
+insert into Persona(id, Nombre, Apellido, CodZip) values(1, "Jersson", "Delgado", "89765");
+select * from Persona;
+
+
+create table Direcciones(ZIP integer, Zona varchar(100), Ruta varchar(100));
+insert into Direcciones(ZIP, Zona, Ruta) values(1232, "Guadalupe", "NL");
+select * from Direcciones;
+
+alter table Mascota
+Add PRIMARY KEY (id)
+
+alter table Mascota
+add Constraint FK_duenos
+foreign key (id_dueno) references Persona(id)
+
+
+alter table Persona
+add Constraint FK_ZIP
+foreign key (CodZip) references Direcciones (ZIP)
+
+alter table Persona
+ADD COLUMN Email varchar(50);
+
+alter table Persona
+add Constraint u_email
+UNIQUE (Email);
